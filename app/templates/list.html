@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}
+<h1 class="h3 mb-3">{{ label }}</h1>
+<div class="row g-3">{% for s in scenarios %}<div class="col-md-6 col-lg-4"><div class="card p-3 h-100">
+<h2 class="h5">{{ s.title }}</h2><span class="badge text-bg-info align-self-start mb-2">{{ s.difficulty }}</span>
+<p class="text-secondary">{{ s.objective }}</p>
+<a class="btn btn-teal mt-auto" href="{{ url_for('main.scenario', module=module, sid=s.id) }}">Start scenario</a></div></div>
+{% else %}<p>No scenarios available yet.</p>{% endfor %}</div>{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}{% block content %}
+<h1 class="h3">{{ s.title }}</h1>
+<span class="badge text-bg-info">{{ s.difficulty }}</span> <span class="badge text-bg-secondary">Fictional / synthetic</span>
+{% if s.faculty_review %}<span class="badge text-bg-warning">Requires faculty review</span>{% endif %}
+<p class="text-secondary mt-2"><strong>Objective:</strong> {{ s.objective }}</p>
+{% for e in errors %}<div class="alert alert-danger" role="alert">{{ e }}</div>{% endfor %}
+{% if module == 'clinical' %}
+<div class="card p-3 mb-3"><h2 class="h5">{{ s.patient.label }} (simulated)</h2>
+<dl class="row mb-0"><dt class="col-sm-3">Age / sex</dt><dd class="col-sm-9">{{ s.patient.age }}, {{ s.patient.sex }}</dd>
+<dt class="col-sm-3">History</dt><dd class="col-sm-9">{{ s.patient.history }}</dd>
+<dt class="col-sm-3">Allergies</dt><dd class="col-sm-9">{{ s.patient.allergies }}</dd>
+<dt class="col-sm-3">Current medicines</dt><dd class="col-sm-9">{{ s.patient.medicines | join(', ') }}</dd>
+<dt class="col-sm-3">Symptoms</dt><dd class="col-sm-9">{{ s.patient.symptoms }}</dd>
+<dt class="col-sm-3">Labs</dt><dd class="col-sm-9">{{ s.patient.labs }}</dd>
+<dt class="col-sm-3">Prescription</dt><dd class="col-sm-9">{{ s.patient.prescription }}</dd></dl></div>
+{% else %}
+<div class="card p-3 mb-3"><p class="mb-1"><strong>{{ s.product }}</strong>, batch {{ s.batch }} (synthetic)</p>
+<p class="mb-1"><strong>Method:</strong> {{ s.method }}</p><p class="mb-1"><strong>Acceptance criteria:</strong> {{ s.criteria.text }}</p>
+<p class="mb-2"><strong>Formulas:</strong> {{ s.formulas | join('; ') }}</p>
+<div class="table-responsive"><table class="table table-sm"><thead><tr><th>Unit</th><th>Result ({{ s.unit }})</th></tr></thead><tbody>
+{% for v in s.data %}<tr><td>{{ loop.index }}</td><td>{{ v }}</td></tr>{% endfor %}</tbody></table></div>
+<canvas id="c" height="120" aria-label="Bar chart of raw results"></canvas></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script>const d={{ s.data|tojson }};new Chart(document.getElementById('c'),{type:'bar',data:{labels:d.map((_,i)=>'#'+(i+1)),datasets:[{label:{{ s.unit|tojson }},data:d,backgroundColor:'#35c2a1'}]},options:{plugins:{legend:{display:false}}}});</script>
+{% endif %}
+<form method="post" class="card p-3">
+<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+{% for q in s.questions %}<fieldset class="mb-3"><legend class="h6">{{ q.prompt }}</legend>
+{% if q.type == 'numeric' %}<input class="form-control" type="number" step="any" name="{{ q.id }}" required style="max-width:14rem">
+{% else %}{% for o in q.options %}<div class="form-check"><input class="form-check-input" type="{{ 'checkbox' if q.type == 'multi' else 'radio' }}" name="{{ q.id }}" id="{{ q.id }}{{ o.id }}" value="{{ o.id }}">
+<label class="form-check-label" for="{{ q.id }}{{ o.id }}">{{ o.text }}</label></div>{% endfor %}{% endif %}</fieldset>{% endfor %}
+<button class="btn btn-teal align-self-start" type="submit">Submit answers</button></form>{% endblock %}

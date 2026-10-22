@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block content %}
+<h1 class="h3">Your progress</h1><p class="text-secondary">Stored for this browser session only; no account or personal data.</p>
+{% if rows %}<p>Attempts: {{ rows|length }}. Average score: {{ avg }}%</p>
+<div class="table-responsive"><table class="table"><thead><tr><th>Date (UTC)</th><th>Module</th><th>Scenario</th><th>Score</th></tr></thead><tbody>
+{% for r in rows %}<tr><td>{{ r.completed_at }}</td><td>{{ r.module }}</td><td>{{ r.scenario_id }}</td><td>{{ r.score }}/{{ r.possible }} ({{ r.percent }}%)</td></tr>{% endfor %}</tbody></table></div>
+{% else %}<div class="card p-4">No attempts yet. <a href="{{ url_for('main.index') }}">Start a scenario</a> to build your history.</div>{% endif %}{% endblock %}

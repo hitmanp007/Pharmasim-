@@ -1,0 +1,13 @@
+{% extends 'base.html' %}{% block content %}
+<h1 class="h3">Results: {{ r.title }}</h1>
+<div class="card p-3 mb-3"><p class="h4 mb-1">{{ r.earned }} / {{ r.possible }} ({{ r.percent }}%)</p>
+<div class="bar mb-2"><div style="width:{{ r.percent }}%"></div></div><p class="mb-0">{{ r.feedback }}</p></div>
+{% for i in r['items'] %}<div class="card p-3 mb-2"><strong>{{ i.prompt }}</strong>
+<div class="text-secondary">Your answer: {{ i.answer }}</div>
+<div>{{ i.earned }} / {{ i.max }} points {% if i.critical %}<span class="badge text-bg-danger">Safety-critical</span>{% endif %}</div>
+<div>{{ i.feedback }}</div></div>{% endfor %}
+<div class="card p-3 mb-3"><h2 class="h6">Explanation</h2><p class="mb-0">{{ r.explanation }}</p></div>
+{% if r.references %}<div class="card p-3 mb-3"><h2 class="h6">References</h2><ul class="mb-0">{% for x in r.references %}<li>{{ x }}</li>{% endfor %}</ul></div>{% endif %}
+<p class="text-secondary">{{ r.rules }}</p>
+<a class="btn btn-teal" href="{{ url_for('main.scenario', module=module, sid=s.id) }}">Retry</a>
+<a class="btn btn-outline-light" href="{{ url_for('main.scenario_list', module=module) }}">More scenarios</a>{% endblock %}

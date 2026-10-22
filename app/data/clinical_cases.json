@@ -1,0 +1,272 @@
+[
+ {
+  "id": "allergy-amoxicillin",
+  "title": "Documented penicillin allergy",
+  "difficulty": "Beginner",
+  "objective": "Detect a conflict between a documented allergy and a new prescription.",
+  "patient": {
+   "label": "Fictional patient A. R.",
+   "age": 34,
+   "sex": "Female",
+   "history": "Sinusitis; no chronic conditions",
+   "allergies": "Penicillin: anaphylaxis (documented)",
+   "medicines": [
+    "None"
+   ],
+   "symptoms": "Facial pressure and nasal congestion for 10 days",
+   "labs": "None",
+   "prescription": "New prescription: amoxicillin capsules"
+  },
+  "faculty_review": true,
+  "questions": [
+   {
+    "id": "q1",
+    "type": "single",
+    "prompt": "What is the best next action?",
+    "options": [
+     {
+      "id": "a",
+      "text": "Dispense and counsel to take with food",
+      "points": 0,
+      "feedback": "Amoxicillin is a penicillin-class antibacterial; a documented penicillin anaphylaxis history is a serious conflict.",
+      "critical": true
+     },
+     {
+      "id": "b",
+      "text": "Hold the prescription and contact the prescriber about the documented allergy before dispensing",
+      "points": 5,
+      "feedback": "Correct. Resolve the allergy conflict with the prescriber before any supply."
+     },
+     {
+      "id": "c",
+      "text": "Dispense and tell the patient to stop if a rash appears",
+      "points": 0,
+      "feedback": "Waiting for a reaction does not manage a known serious allergy.",
+      "critical": true
+     },
+     {
+      "id": "d",
+      "text": "Dispense with an over-the-counter antihistamine",
+      "points": 0,
+      "feedback": "This does not make a documented allergy conflict safe.",
+      "critical": true
+     }
+    ]
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "points_each": 2,
+    "prompt": "Select the safety checks relevant to this case.",
+    "options": [
+     {
+      "id": "a",
+      "text": "Compare the drug class with the documented allergy",
+      "correct": true
+     },
+     {
+      "id": "b",
+      "text": "Confirm the allergy record is current with the patient",
+      "correct": true
+     },
+     {
+      "id": "c",
+      "text": "Check the patient's brand preference",
+      "correct": false
+     },
+     {
+      "id": "d",
+      "text": "Check pharmacy stock levels",
+      "correct": false
+     }
+    ]
+   }
+  ],
+  "explanation": "Allergy screening compares each new drug (and its class) against documented allergies before dispensing. Escalate conflicts to the prescriber.",
+  "references": [
+   "DailyMed (U.S. National Library of Medicine): current official labeling for each drug named in this case, https://dailymed.nlm.nih.gov",
+   "FDA Drugs@FDA labeling database, https://www.accessdata.fda.gov/scripts/cder/daf/",
+   "Faculty review required before educational release."
+  ]
+ },
+ {
+  "id": "interaction-warfarin-nsaid",
+  "title": "Anticoagulant plus NSAID",
+  "difficulty": "Intermediate",
+  "objective": "Recognise a clinically important interaction and escalate appropriately.",
+  "patient": {
+   "label": "Fictional patient B. K.",
+   "age": 68,
+   "sex": "Male",
+   "history": "Atrial fibrillation; knee osteoarthritis",
+   "allergies": "None documented",
+   "medicines": [
+    "Warfarin (long-term, stable)"
+   ],
+   "symptoms": "Knee pain",
+   "labs": "INR recorded last week (fictional value, reported as in the patient's usual range)",
+   "prescription": "New prescription: ibuprofen tablets"
+  },
+  "faculty_review": true,
+  "questions": [
+   {
+    "id": "q1",
+    "type": "single",
+    "prompt": "What is the best next action?",
+    "options": [
+     {
+      "id": "a",
+      "text": "Dispense because the recent INR was in the usual range",
+      "points": 0,
+      "feedback": "A recent INR does not remove the interaction concern; NSAID labeling warns of increased bleeding risk with anticoagulants.",
+      "critical": true
+     },
+     {
+      "id": "b",
+      "text": "Contact the prescriber to review the warfarin and NSAID combination before dispensing",
+      "points": 5,
+      "feedback": "Correct. Escalate and let the prescriber decide on alternatives and monitoring."
+     },
+     {
+      "id": "c",
+      "text": "Tell the patient to reduce his warfarin",
+      "points": 0,
+      "feedback": "Pharmacists must not change prescribed therapy independently.",
+      "critical": true
+     },
+     {
+      "id": "d",
+      "text": "Dispense and add a note to the file only",
+      "points": 1,
+      "feedback": "Documenting without resolving the interaction leaves the risk unaddressed."
+     }
+    ]
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "points_each": 2,
+    "prompt": "Select the relevant safety checks.",
+    "options": [
+     {
+      "id": "a",
+      "text": "Anticoagulant and NSAID interaction screening",
+      "correct": true
+     },
+     {
+      "id": "b",
+      "text": "Ask about other OTC or herbal products",
+      "correct": true
+     },
+     {
+      "id": "c",
+      "text": "Counsel on bleeding signs and when to seek help, if therapy proceeds",
+      "correct": true
+     },
+     {
+      "id": "d",
+      "text": "Compare tablet colours between brands",
+      "correct": false
+     }
+    ]
+   }
+  ],
+  "explanation": "Interaction screening covers prescription, OTC and herbal products. Serious combinations are escalated to the prescriber.",
+  "references": [
+   "DailyMed (U.S. National Library of Medicine): current official labeling for each drug named in this case, https://dailymed.nlm.nih.gov",
+   "FDA Drugs@FDA labeling database, https://www.accessdata.fda.gov/scripts/cder/daf/",
+   "Faculty review required before educational release."
+  ]
+ },
+ {
+  "id": "duplication-nsaids",
+  "title": "Medication reconciliation: duplicate NSAIDs",
+  "difficulty": "Intermediate",
+  "objective": "Identify therapeutic duplication during medication reconciliation.",
+  "patient": {
+   "label": "Fictional patient C. M.",
+   "age": 72,
+   "sex": "Female",
+   "history": "Osteoarthritis; hypertension",
+   "allergies": "None documented",
+   "medicines": [
+    "Ibuprofen (prescribed)",
+    "Naproxen sodium (OTC, patient-reported)",
+    "Amlodipine"
+   ],
+   "symptoms": "Ongoing joint pain",
+   "labs": "None provided",
+   "prescription": "Reconciling the home medication list after a hospital discharge"
+  },
+  "faculty_review": true,
+  "questions": [
+   {
+    "id": "q1",
+    "type": "single",
+    "prompt": "What is the best next action?",
+    "options": [
+     {
+      "id": "a",
+      "text": "Record both NSAIDs and continue",
+      "points": 0,
+      "feedback": "Two NSAIDs are a therapeutic duplication that needs review.",
+      "critical": true
+     },
+     {
+      "id": "b",
+      "text": "Flag the duplicate NSAIDs and contact the prescriber for review; counsel the patient on the issue",
+      "points": 5,
+      "feedback": "Correct. Flag, communicate and document."
+     },
+     {
+      "id": "c",
+      "text": "Tell the patient to stop amlodipine",
+      "points": 0,
+      "feedback": "Amlodipine is not the duplicated agent; do not stop unrelated therapy.",
+      "critical": true
+     },
+     {
+      "id": "d",
+      "text": "Counsel the patient and note it without contacting the prescriber",
+      "points": 2,
+      "feedback": "Partly appropriate, but the prescriber should be informed."
+     }
+    ]
+   },
+   {
+    "id": "q2",
+    "type": "multi",
+    "points_each": 2,
+    "prompt": "Select the relevant reconciliation steps.",
+    "options": [
+     {
+      "id": "a",
+      "text": "Identify two agents from the same drug class",
+      "correct": true
+     },
+     {
+      "id": "b",
+      "text": "Ask about all OTC use",
+      "correct": true
+     },
+     {
+      "id": "c",
+      "text": "Communicate the reconciliation findings to the prescriber",
+      "correct": true
+     },
+     {
+      "id": "d",
+      "text": "Treat amlodipine as a duplicate of ibuprofen",
+      "correct": false
+     }
+    ]
+   }
+  ],
+  "explanation": "Reconciliation compares every source (prescribed, OTC) and flags duplication, omissions and discrepancies for resolution.",
+  "references": [
+   "DailyMed (U.S. National Library of Medicine): current official labeling for each drug named in this case, https://dailymed.nlm.nih.gov",
+   "FDA Drugs@FDA labeling database, https://www.accessdata.fda.gov/scripts/cder/daf/",
+   "Faculty review required before educational release."
+  ]
+ }
+]

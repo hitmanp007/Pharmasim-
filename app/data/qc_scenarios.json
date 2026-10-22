@@ -1,0 +1,170 @@
+[
+ {
+  "id": "weight-variation",
+  "title": "Tablet weight variation",
+  "difficulty": "Beginner",
+  "objective": "Compute a batch mean and apply individual-unit deviation limits.",
+  "product": "Synthetic Tablets A",
+  "batch": "SYN-0001",
+  "method": "Weigh 10 tablets individually.",
+  "unit": "mg",
+  "data": [
+   198,
+   201,
+   205,
+   199,
+   210,
+   196,
+   200,
+   202,
+   197,
+   192
+  ],
+  "criteria": {
+   "type": "weight_variation",
+   "flag_pct": 5,
+   "hard_pct": 10,
+   "max_flagged": 2,
+   "text": "Exercise criteria: no more than 2 tablets deviate from the batch mean by more than 5%, and none by more than 10%."
+  },
+  "formulas": [
+   "Mean = sum / n",
+   "% deviation = (value - mean) / mean x 100"
+  ],
+  "questions": [
+   {
+    "id": "mean",
+    "type": "numeric",
+    "prompt": "Mean tablet weight (mg)?",
+    "key": "mean",
+    "tolerance": 0.05,
+    "points": 3,
+    "unit": "mg"
+   },
+   {
+    "id": "decision",
+    "type": "choice",
+    "prompt": "Do the results meet the stated criteria?",
+    "points": 3,
+    "options": [
+     {
+      "id": "pass",
+      "text": "Meets criteria"
+     },
+     {
+      "id": "fail",
+      "text": "Does not meet criteria"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "assay-label-claim",
+  "title": "Assay as % of label claim",
+  "difficulty": "Intermediate",
+  "objective": "Express an assay mean as % of label claim and compare to limits.",
+  "product": "Synthetic Tablets B 500 mg",
+  "batch": "SYN-0002",
+  "method": "Three replicate assays, reported as mg per tablet.",
+  "unit": "mg",
+  "data": [
+   473,
+   476,
+   475
+  ],
+  "criteria": {
+   "type": "assay",
+   "label_claim": 500,
+   "low": 95.0,
+   "high": 105.0,
+   "text": "Exercise criteria: mean 95.0-105.0% of label claim (inclusive)."
+  },
+  "formulas": [
+   "Mean = sum / n",
+   "% label claim = mean / label claim x 100"
+  ],
+  "questions": [
+   {
+    "id": "pct_lc",
+    "type": "numeric",
+    "prompt": "Mean as % of label claim?",
+    "key": "pct_lc",
+    "tolerance": 0.05,
+    "points": 3,
+    "unit": "%"
+   },
+   {
+    "id": "decision",
+    "type": "choice",
+    "prompt": "Do the results meet the stated criteria?",
+    "points": 3,
+    "options": [
+     {
+      "id": "pass",
+      "text": "Meets criteria"
+     },
+     {
+      "id": "fail",
+      "text": "Does not meet criteria (OOS)"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "id": "dissolution-s1",
+  "title": "Dissolution, stage S1",
+  "difficulty": "Intermediate",
+  "objective": "Apply an explicitly stated stage rule, and respond correctly when it is not met.",
+  "product": "Synthetic Tablets C",
+  "batch": "SYN-0003",
+  "method": "Six units, % dissolved at 30 min.",
+  "unit": "% dissolved",
+  "data": [
+   88,
+   91,
+   86,
+   84,
+   90,
+   89
+  ],
+  "criteria": {
+   "type": "dissolution_s1",
+   "q": 80,
+   "s1_margin": 5,
+   "text": "Exercise criteria (this scenario only): S1 is met if every unit is at least Q + 5%, with Q = 80%."
+  },
+  "formulas": [
+   "Mean = sum / n",
+   "S1 floor = Q + 5"
+  ],
+  "questions": [
+   {
+    "id": "mean",
+    "type": "numeric",
+    "prompt": "Mean % dissolved?",
+    "key": "mean",
+    "tolerance": 0.05,
+    "points": 3,
+    "unit": "%"
+   },
+   {
+    "id": "decision",
+    "type": "choice",
+    "prompt": "Do the results meet the stated criteria?",
+    "points": 4,
+    "options": [
+     {
+      "id": "pass",
+      "text": "Stage S1 met"
+     },
+     {
+      "id": "fail",
+      "text": "Stage S1 not met; follow the documented next steps"
+     }
+    ]
+   }
+  ]
+ }
+]

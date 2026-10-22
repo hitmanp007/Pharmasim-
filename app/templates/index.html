@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% block content %}
+<h1 class="h2">Practice pharmacy decisions safely</h1>
+<p class="text-secondary">Pick a module, work through a scenario, and get explained feedback.</p>
+<div class="row g-3">
+<div class="col-md-6"><a class="text-decoration-none" href="{{ url_for('main.scenario_list', module='clinical') }}"><div class="card module-card p-4"><h2 class="h4">Clinical Pharmacy Simulator</h2><p class="text-secondary mb-0">Review fictional cases: allergies, interactions, duplications and reconciliation.</p></div></a></div>
+<div class="col-md-6"><a class="text-decoration-none" href="{{ url_for('main.scenario_list', module='qc') }}"><div class="card module-card qc p-4"><h2 class="h4">Pharmaceutical QC Lab Simulator</h2><p class="text-secondary mb-0">Analyse synthetic lab data against explicit acceptance criteria.</p></div></a></div>
+</div>{% endblock %}

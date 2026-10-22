@@ -1,0 +1,12 @@
+:root{--bg:#0f1720;--card:#17212d;--line:#2a3a4b;--ink:#e6edf3;--mute:#9fb0c0;--teal:#35c2a1;--amber:#f2b84b}
+body{background:var(--bg);color:var(--ink);font-family:system-ui,"Segoe UI",sans-serif;line-height:1.55}
+.navbar{background:#0b1118;border-bottom:1px solid var(--line)}.navbar-brand{font-weight:700;letter-spacing:.02em}
+.navbar-brand span{color:var(--teal)}
+.card,.table{background:var(--card);color:var(--ink);border:1px solid var(--line);--bs-table-bg:var(--card);--bs-table-color:var(--ink);--bs-table-border-color:var(--line)}
+.module-card{border-left:4px solid var(--teal);height:100%}.module-card.qc{border-left-color:var(--amber)}
+.text-secondary{color:var(--mute)!important}.disclaimer{background:#1b2a1f;border:1px solid #2f5d3c;border-radius:.5rem;padding:.6rem .9rem;color:#bfe3c9;font-size:.9rem}
+.form-control,.form-check-input{background:#0f1720;color:var(--ink);border-color:var(--line)}
+.form-check-input:checked{background-color:var(--teal);border-color:var(--teal)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.btn-teal{background:var(--teal);color:#06231c;font-weight:600}.btn-teal:hover{background:#4fd4b5}
+.bar{height:.6rem;background:#0f1720;border-radius:1rem;overflow:hidden}.bar>div{height:100%;background:var(--teal)}
